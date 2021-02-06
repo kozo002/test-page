@@ -1,0 +1,24 @@
+this is a test page
+<textarea readonly id="textarea"></textarea>
+
+<script>
+  (async () => {
+    const headers = new Headers()
+    headers.append('X-Note-Client-Code', '2b1fd36e9f960c87f51ae6a908c453732ad5b776d68c20d8d8ef47d11b133071')
+    const req = new Request('http://localhost:3101/api/v2/current_user', {
+      method: 'GET',
+      headers
+    })
+    const res = await fetch(req)
+    const data = await res.json()
+    document.getElementById('textarea').innerText = JSON.stringify(data, null, 2)
+  }).call()
+</script>
+
+<style type="text/css">
+#textarea {
+  display: block;
+  width: 100%;
+  height: 500px;
+}
+</style>
